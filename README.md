@@ -10,7 +10,7 @@ how?
     var Flux = simflux.Flux,
         dispatcher = Flux.dispatcher;
 
-    // an object qualifies as to be a store if it has name and actions
+    // an object qualifies to be a store if it has name and actions
     var appStore = {
       name: 'appStore',
       actions: [ 'addTodo', 'removeTodo' ],
@@ -39,7 +39,7 @@ why?
 
 - Less boilerplate
 - Does not facilitate async Stores
-- Easily list action dependencies without needing to realy on `waitFor`
+- Easily list action dependencies without needing to rely on `waitFor`
 - Circular dependency detection
 - Tiny footprint
 
