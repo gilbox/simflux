@@ -78,7 +78,7 @@ simflux:
       }
     }
 
-    dispatcher.registerStore(store);
+    dispatcher.registerStore(todoStore);
 
 
 
