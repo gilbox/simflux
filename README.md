@@ -1,19 +1,17 @@
 simflux
 =======
 
-simple Flux implementation
+Framework-agnostic, simple Flux wrapper on top of Facebook's Flux
 
 
 how?
 ----
 
-    var Flux = simflux.Flux,
-        dispatcher = Flux.dispatcher;
+    var dispatcher = new simflux.dispatcher();
 
-    // an object qualifies to be a store if it has name and actions
+    // an object qualifies to be a store if it has methods
+    // named the same as actions
     var appStore = {
-      name: 'appStore',
-      actions: [ 'addTodo', 'removeTodo' ],
       addTodo: function(todo) { ... },
       removeTodo: function(todo) { ... }
     }
@@ -25,12 +23,13 @@ how?
     var actionCreator = {
       addTodo: function(todo) {
         doSomethingAsync.then(function() {
+          dispatcher.waitFor([otherStore, anotherStore]);
           dispatcher.dispatch('addTodo', todo);
         });
       }
     }
     
-    // do something!
+    // in the view: do something!
     actionCreator.addTodo({ todo: 'My Todo' });
 
 
@@ -38,10 +37,7 @@ why?
 ----
 
 - Less boilerplate
-- Does not facilitate async Stores
-- Easily list action dependencies without needing to rely on `waitFor`
-- Circular dependency detection
-- Tiny footprint
+- Easier to read
 
 
 demo
@@ -53,5 +49,5 @@ demo
 requirements
 ------------
 
-- lodash
+- [Facebook's Flux](https://github.com/facebook/flux) Implementation
 
