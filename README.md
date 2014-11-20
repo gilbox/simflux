@@ -12,7 +12,7 @@ how?
     // an object qualifies to be a store if it has methods
     // named the same as actions
     var appStore = {
-      addTodo: function(todo) { ... },
+      addTodo: function(todo, priority) { ... },
       removeTodo: function(todo) { ... }
     }
     
@@ -21,16 +21,16 @@ how?
     
     // all async ops should be handled by the Action Creator
     var actionCreator = {
-      addTodo: function(todo) {
+      addTodo: function(todo, priority) {
         doSomethingAsync.then(function() {
           dispatcher.waitFor([otherStore, anotherStore]);
-          dispatcher.dispatch('addTodo', todo);
+          dispatcher.dispatch('addTodo', todo, priority);
         });
       }
     }
     
     // in the view: do something!
-    actionCreator.addTodo({ todo: 'My Todo' });
+    actionCreator.addTodo({ todo: 'My Todo' }, 'top priority');
 
 
 why?
@@ -38,6 +38,48 @@ why?
 
 - Less boilerplate
 - Easier to read
+
+differences
+-----------
+
+### dispatch
+
+Flux:
+
+    dispatcher.dispatch( { type: 'ACTION_TYPE', data: { allthe: data} );
+
+simflux:
+
+    dispatcher.dispatch('ACTION_TYPE', arg1, arg2, ... );
+
+### register, waitFor
+
+Flux:
+
+    var todoStore = {
+      handleAllActions: function(payload) {
+        switch(payload.type) {
+          case 'addTodo':
+            dispatcher.waitFor([anotherStore.dispatcherToken]);
+            ...
+            break;
+        }
+      }
+    };
+
+    todoStore.dispatcherToken = dispatcher.register(todoStore.handleAllActions);
+
+simflux:
+
+    var todoStore = {
+      addTodo: function(todo) {
+        dispatcher.waitFor([anotherStore])
+        ...
+      }
+    }
+
+    dispatcher.registerStore(store);
+
 
 
 demo
