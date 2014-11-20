@@ -1,0 +1,21 @@
+{
+  "name": "simflux",
+  "main": "simflux.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/gilbox/simflux",
+  "authors": [
+    "Gil Birman <g@gilbox.me>"
+  ],
+  "description": "simple wrapper for facebook's flux implementation",
+  "keywords": [
+    "flux"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
