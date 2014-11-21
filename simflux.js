@@ -1,5 +1,11 @@
 (function() {
 
+  var Flux = window.Flux;
+
+  if (!Flux && typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
+    Flux = require('flux');
+  }
+
   var SimfluxDispatcher = function() {
     this.fluxDispatcher = new Flux.Dispatcher();
   };
@@ -49,13 +55,7 @@
   };
 
   // requirejs compatibility
-  // borrowed from lodash:
   if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
-    // Expose simflux to the global object even when an AMD loader is present in
-    // case simflux is loaded with a RequireJS shim config.
-    // See http://requirejs.org/docs/api.html#config-shim
-    root.simflux = simflux;
-
     define(function() {
       return simflux;
     });
