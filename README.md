@@ -7,10 +7,10 @@ Framework-agnostic, simple Flux wrapper on top of Facebook's Flux
 how?
 ----
 
-    var dispatcher = new simflux.dispatcher();
+    var dispatcher = new simflux.Dispatcher();
 
     // an object qualifies to be a store if it has methods
-    // named the same as actions
+    // named the same as the actions it should handle
     var appStore = {
       addTodo: function(todo, priority) { ... },
       removeTodo: function(todo) { ... }
