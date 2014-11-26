@@ -12,7 +12,14 @@ how?
     // an object qualifies to be a store if it has methods
     // named the same as the actions it should handle
     var appStore = {
-      addTodo: function(todo, priority) { ... },
+      todos: [],
+      addTodo: function(todo, priority) { 
+        dispatcher.waitFor([otherStore, anotherStore]);
+        this.todos.push({
+          todo: todo,
+          priority: priority
+        });
+      },
       removeTodo: function(todo) { ... }
     }
     
@@ -23,7 +30,6 @@ how?
     var actionCreator = {
       addTodo: function(todo, priority) {
         doSomethingAsync.then(function() {
-          dispatcher.waitFor([otherStore, anotherStore]);
           dispatcher.dispatch('addTodo', todo, priority);
         });
       }
