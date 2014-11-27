@@ -2,7 +2,7 @@
 
   var Flux = window.Flux;
 
-  if (!Flux && (module || typeof define == 'function' && typeof define.amd == 'object' && define.amd)) {
+  if (!Flux && ((typeof module !== 'undefined' && module.exports) || typeof define == 'function' && typeof define.amd == 'object' && define.amd)) {
     Flux = require('Flux');
   }
 
@@ -62,6 +62,6 @@
   } else {
     window.simflux = simflux;
   }
-  
-  if (module) module.exports = simflux;
+
+  if (typeof module !== 'undefined' && module.exports) module.exports = simflux;
 })();
