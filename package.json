@@ -1,0 +1,29 @@
+{
+  "name": "simflux",
+  "version": "0.0.1",
+  "description": "simple platform-agnostic wrapper for Facebook's Flux implementation",
+  "main": "simflux.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gilbox/simflux.git"
+  },
+  "keywords": [
+    "flux"
+  ],
+  "author": "Gil Birman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gilbox/simflux/issues"
+  },
+  "homepage": "https://github.com/gilbox/simflux",
+  "dependencies": {
+    "browserify": "^6.3.3",
+    "flux": "^2.0.1",
+    "gulp": "^3.8.10",
+    "gulp-load-plugins": "^0.7.1",
+    "vinyl-source-stream": "^1.0.0"
+  }
+}
