@@ -1,3 +1,5 @@
+var simflux;
+
 (function() {
 
   var Flux = window.Flux;
@@ -6,11 +8,15 @@
     Flux = require('Flux');
   }
 
-  var SimfluxDispatcher = function() {
+  var SimfluxDispatcher = function(name) {
+    this.name = name;
     this.fluxDispatcher = new Flux.Dispatcher();
+    this.actionCreators = [];
+    this.stores = [];
   };
 
   SimfluxDispatcher.prototype.registerStore = function(store) {
+    this.stores.push(store);
     store.$$$dispatcherToken = this.fluxDispatcher.register(function(payload) {
       if (store[payload.action]) store[payload.action].apply(store, payload.args);
     });
@@ -49,9 +55,20 @@
     return this.fluxDispatcher.isDispatching();
   };
 
-  var simflux = {
+  SimfluxDispatcher.prototype.registerActionCreator = function (ac) {
+    this.actionCreators.push(ac);
+    return ac;
+  };
+
+  simflux = {
     version: 'pre-beta',
-    Dispatcher: SimfluxDispatcher
+    Dispatcher: SimfluxDispatcher,
+    dispatchers: [],
+    instantiateDispatcher: function (name) {
+      var d = new SimfluxDispatcher(name || ('Dispatcher #'+(simflux.dispatchers.length+1)));
+      this.dispatchers.push(d);
+      return d;
+    }
   };
 
   // requirejs compatibility
@@ -63,5 +80,6 @@
     window.simflux = simflux;
   }
 
-  if (typeof module !== 'undefined' && module.exports) module.exports = simflux;
 })();
+
+if (typeof module !== 'undefined' && module.exports) module.exports = simflux;
