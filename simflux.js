@@ -17,6 +17,7 @@ var simflux;
 
   SimfluxDispatcher.prototype.registerStore = function(store) {
     this.stores.push(store);
+    store.$$$stack = new Error().stack;
     store.$$$dispatcherToken = this.fluxDispatcher.register(function(payload) {
       if (store[payload.action]) store[payload.action].apply(store, payload.args);
     });
@@ -56,6 +57,7 @@ var simflux;
   };
 
   SimfluxDispatcher.prototype.registerActionCreator = function (ac) {
+    ac.$$$stack = new Error().stack;
     this.actionCreators.push(ac);
     return ac;
   };
@@ -64,6 +66,8 @@ var simflux;
     version: 'pre-beta',
     Dispatcher: SimfluxDispatcher,
     dispatchers: [],
+
+    // use this instead of the Dispatcher constructor if you plan on using simflux-viz
     instantiateDispatcher: function (name) {
       var d = new SimfluxDispatcher(name || ('Dispatcher #'+(simflux.dispatchers.length+1)));
       this.dispatchers.push(d);
