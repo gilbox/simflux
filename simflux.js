@@ -5,7 +5,7 @@ var simflux;
   var Flux = window.Flux;
 
   if (!Flux && ((typeof module !== 'undefined' && module.exports) || typeof define == 'function' && typeof define.amd == 'object' && define.amd)) {
-    Flux = require('Flux');
+    Flux = require('flux');
   }
 
   var SimfluxDispatcher = function(name) {
