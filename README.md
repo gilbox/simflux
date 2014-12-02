@@ -3,6 +3,11 @@ simflux
 
 Framework-agnostic, simple Flux wrapper on top of Facebook's Flux
 
+simflux-viz
+-----------
+
+**[simflux-viz](https://github.com/gilbox/simflux-viz)** is a chrome extension and visualization library
+for simflux that aids developers in understand application flow.
 
 how?
 ----
