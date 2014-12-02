@@ -7,7 +7,7 @@ simflux-viz
 -----------
 
 **[simflux-viz](https://github.com/gilbox/simflux-viz)** is a chrome extension and visualization library
-for simflux that aids developers in understand application flow.
+for simflux that aids developers to understand application flow.
 
 how?
 ----
