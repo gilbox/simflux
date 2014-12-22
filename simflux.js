@@ -64,15 +64,7 @@ var simflux;
 
   simflux = {
     version: 'pre-beta',
-    Dispatcher: SimfluxDispatcher,
-    dispatchers: [],
-
-    // use this instead of the Dispatcher constructor if you plan on using simflux-viz
-    instantiateDispatcher: function (name) {
-      var d = new SimfluxDispatcher(name || ('Dispatcher #'+(simflux.dispatchers.length+1)));
-      simflux.dispatchers.push(d);
-      return d;
-    }
+    Dispatcher: SimfluxDispatcher
   };
 
   // requirejs compatibility
