@@ -6,8 +6,9 @@ Framework-agnostic, simple Flux wrapper on top of Facebook's Flux
 simflux-viz
 -----------
 
-**[simflux-viz](https://github.com/gilbox/simflux-viz)** is a chrome extension and visualization library
-for simflux that aids developers to understand application flow.
+**[simflux-viz](https://github.com/gilbox/simflux-viz)** is a plugin for
+**[vizone](https://github.com/gilbox/vizone)**, a chrome extension and visualization library
+that aids developers to understand application flow.
 
 how?
 ----
@@ -39,6 +40,9 @@ how?
         });
       }
     }
+
+    // register appStore with Flux
+    dispatcher.registerActionCreator(actionCreator);
     
     // in the view: do something!
     actionCreator.addTodo({ todo: 'My Todo' }, 'top priority');
