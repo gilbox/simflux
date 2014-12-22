@@ -1,6 +1,8 @@
 simflux
 =======
 
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/gilbox/simflux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Framework-agnostic, simple Flux wrapper on top of Facebook's Flux
 
 simflux-viz
