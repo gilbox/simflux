@@ -1,6 +1,6 @@
 {
   "name": "simflux",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "simple platform-agnostic wrapper for Facebook's Flux implementation",
   "main": "simflux.js",
   "scripts": {
