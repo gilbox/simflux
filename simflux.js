@@ -8,12 +8,19 @@ var simflux;
     Flux = require('flux');
   }
 
-  var SimfluxDispatcher = function(name) {
+  var simflux = {
+    version: 'pre-beta',
+    Dispatcher: SimfluxDispatcher,
+    dispatchers: []
+  };
+
+  function SimfluxDispatcher(name) {
+    simflux.dispatchers.push(this);
     this.name = name;
     this.fluxDispatcher = new Flux.Dispatcher();
     this.actionCreators = [];
     this.stores = [];
-  };
+  }
 
   SimfluxDispatcher.prototype.registerStore = function(store) {
     this.stores.push(store);
@@ -60,11 +67,6 @@ var simflux;
     ac.$$$stack = new Error().stack;
     this.actionCreators.push(ac);
     return ac;
-  };
-
-  simflux = {
-    version: 'pre-beta',
-    Dispatcher: SimfluxDispatcher
   };
 
   // requirejs compatibility
