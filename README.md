@@ -126,6 +126,7 @@ demo
 ----
 
 [angular-simflux-experiment](https://github.com/gilbox/angular-simflux-experiment): Flux in angularjs
+[angular-flux-routing-example](https://github.com/gilbox/angular-flux-routing-example): Anothe angularjs demo created for the article [Achieving reasonable and scalable routing in AngularJS with Flux](https://medium.com/@gilbox/achieving-reasonable-and-scalable-routing-in-angularjs-with-flux-2655e06cd5ee)
 
 
 requirements
