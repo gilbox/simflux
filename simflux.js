@@ -2,7 +2,8 @@ var simflux;
 
 (function() {
 
-  var Flux = window.Flux;
+  var window = (typeof window === 'undefined') ? {}:window,
+      Flux = window.Flux;
 
   if (!Flux && ((typeof module !== 'undefined' && module.exports) || typeof define == 'function' && typeof define.amd == 'object' && define.amd)) {
     Flux = require('flux');
