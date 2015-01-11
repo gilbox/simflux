@@ -2,14 +2,14 @@ var simflux;
 
 (function() {
 
-  var window = (typeof window === 'undefined') ? {}:window,
+  var window = (typeof window !== 'undefined') ? window : {},
       Flux = window.Flux;
 
   if (!Flux && ((typeof module !== 'undefined' && module.exports) || typeof define == 'function' && typeof define.amd == 'object' && define.amd)) {
     Flux = require('flux');
   }
 
-  var simflux = {
+  simflux = {
     version: 'pre-beta',
     Dispatcher: SimfluxDispatcher,
     dispatchers: []
