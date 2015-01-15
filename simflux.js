@@ -2,8 +2,7 @@ var simflux;
 
 (function() {
 
-  var window = (typeof window !== 'undefined') ? window : {},
-      Flux = window.Flux;
+  var Flux = (typeof window !== 'undefined') && window.Flux;
 
   if (!Flux && ((typeof module !== 'undefined' && module.exports) || typeof define == 'function' && typeof define.amd == 'object' && define.amd)) {
     Flux = require('flux');
@@ -76,7 +75,7 @@ var simflux;
       return simflux;
     });
   } else {
-    window.simflux = simflux;
+    if (typeof window !== 'undefined') window.simflux = simflux;
   }
 
 })();
