@@ -21,14 +21,14 @@ how?
     // named the same as the actions it should handle
     var appStore = {
       todos: [],
-      addTodo: function(todo, priority) { 
+      addTodo(payload) { 
         dispatcher.waitFor([otherStore, anotherStore]);
         this.todos.push({
-          todo: todo,
-          priority: priority
+          todo: payload.todo,
+          priority: payload.priority
         });
       },
-      removeTodo: function(todo) { ... }
+      removeTodo(payload) { ... }
     }
     
     // register appStore with Flux
@@ -36,9 +36,9 @@ how?
     
     // all async ops should be handled by the Action Creator
     var actionCreator = {
-      addTodo: function(todo, priority) {
+      addTodo(todo, priority) {
         doSomethingAsync.then(function() {
-          dispatcher.dispatch('addTodo', todo, priority);
+          dispatcher.dispatch('addTodo', {todo, priority});
         });
       }
     }
@@ -47,7 +47,7 @@ how?
     dispatcher.registerActionCreator(actionCreator);
     
     // in the view: do something!
-    actionCreator.addTodo({ todo: 'My Todo' }, 'top priority');
+    actionCreator.addTodo({ todo: 'My Todo', priority: 'top priority' });
 
 
 why?
@@ -68,13 +68,14 @@ Flux:
 simflux:
 
     dispatcher.dispatch('ACTION_TYPE', arg1, arg2, ... );
+    
 
 ### register, waitFor
 
 Flux:
 
     var todoStore = {
-      handleAllActions: function(payload) {
+      handleAllActions(payload) {
         switch(payload.type) {
           case 'addTodo':
             dispatcher.waitFor([anotherStore.dispatcherToken]);
@@ -89,7 +90,7 @@ Flux:
 simflux:
 
     var todoStore = {
-      addTodo: function(todo) {
+      addTodo(payload) {
         dispatcher.waitFor([anotherStore])
         ...
       }
@@ -109,9 +110,9 @@ For example, if you want a store to handle any action that begins with `add`:
     var dispatcher = new simflux.Dispatcher();
     
     var appStore = {
-      handleActions: function(payload) {
-        var action = payload.action,
-            args = payload.args;
+      handleActions(o) {
+        var action = o.action,
+            payload = o.args[0];
         
         if (action.indexOf('add') === 0) {
             // do something with args
